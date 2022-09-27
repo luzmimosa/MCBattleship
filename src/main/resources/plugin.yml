@@ -4,3 +4,8 @@ main: com.fadedbytes.MCBattleship.BattleshipPlugin
 api-version: 1.19.2
 description: Play battleship against the computer in Minecraft!
 author: PaueteKKUET
+
+commands:
+  test:
+    description: Test command for debug purposes
+    usage: /test
