@@ -1,0 +1,6 @@
+name: MCBattleship
+version: '${project.version}'
+main: com.fadedbytes.MCBattleship.BattleshipPlugin
+api-version: 1.19.2
+description: Play battleship against the computer in Minecraft!
+author: PaueteKKUET
