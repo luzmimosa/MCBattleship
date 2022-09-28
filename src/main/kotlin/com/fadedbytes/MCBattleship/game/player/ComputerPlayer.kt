@@ -2,6 +2,8 @@ package com.fadedbytes.MCBattleship.game.player
 
 import com.fadedbytes.MCBattleship.game.BattleshipGame
 import com.fadedbytes.MCBattleship.game.GameBoard
+import com.fadedbytes.MCBattleship.game.Ship
+import kotlin.random.Random
 
 class ComputerPlayer(
     override val linkedGame: BattleshipGame,

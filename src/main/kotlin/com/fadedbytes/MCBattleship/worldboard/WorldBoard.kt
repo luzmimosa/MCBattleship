@@ -2,6 +2,7 @@ package com.fadedbytes.MCBattleship.worldboard
 
 import com.fadedbytes.MCBattleship.game.CellState
 import com.fadedbytes.MCBattleship.game.GameBoard
+import com.fadedbytes.MCBattleship.game.GameMaster
 import org.bukkit.Location
 import org.bukkit.Material
 
@@ -13,6 +14,7 @@ class WorldBoard(
     private val board: Array<Array<Material>> = Array(gameBoard.boardSize) { Array(gameBoard.boardSize) { Material.BLUE_TERRACOTTA } }
 
     init {
+        GameMaster.boardMap.put(gameBoard, this);
         synchronizeBoards()
         updateWorld()
     }

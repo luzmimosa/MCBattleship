@@ -1,9 +1,7 @@
 package com.fadedbytes.MCBattleship.command
 
-import com.fadedbytes.MCBattleship.game.GameBoard
-import com.fadedbytes.MCBattleship.game.Ship
-import com.fadedbytes.MCBattleship.game.ShipInfo
-import com.fadedbytes.MCBattleship.worldboard.WorldBoard
+import com.fadedbytes.MCBattleship.game.GameMaster
+import com.fadedbytes.MCBattleship.worldboard.MinecraftGame
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -17,15 +15,20 @@ class FastTestCommand: CommandExecutor {
             return true
         }
 
-        val gameBoard = GameBoard(10)
+        if (GameMaster.isPlaying(sender)) {
 
-        gameBoard.addShip(Ship.CARRIER, ShipInfo(0, 0, true))
-        gameBoard.addShip(Ship.BATTLESHIP, ShipInfo(4, 3, false))
+            val game = GameMaster.getLogicalGame(sender) ?: return true
 
-        gameBoard.fireAt(0, 1)
-        gameBoard.fireAt(2, 2)
+            val randomX = game.redPlayer.getRandomCoordinates().first
+            val randomY = game.redPlayer.getRandomCoordinates().second
 
-        val worldBoard = WorldBoard(gameBoard, sender.location)
+            game.redPlayer.fire(randomX, randomY)
+
+            return true
+        }
+
+        val game: MinecraftGame = GameMaster.startGameFor(sender)
+        sender.sendMessage("UwU")
 
         return true
     }

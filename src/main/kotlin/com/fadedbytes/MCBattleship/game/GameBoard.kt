@@ -1,5 +1,8 @@
 package com.fadedbytes.MCBattleship.game
 
+import com.fadedbytes.MCBattleship.worldboard.events.LogicGameBoardChanged
+import org.bukkit.Bukkit
+
 class GameBoard(val boardSize: Int = 10) {
 
     private val ships = mutableMapOf<Ship, ShipInfo>()
@@ -61,12 +64,19 @@ class GameBoard(val boardSize: Int = 10) {
 
     fun getCellState(x: Int, y: Int): CellState {
         getShipAt(x, y)?.let {
-            return CellState.SHIP
+
+            return if (board[x][y] == CellState.HIT) {
+                CellState.HIT
+            } else {
+                CellState.SHIP
+            }
         }
         return board[x][y]
     }
 
     fun setCellState(x: Int, y: Int, state: CellState) {
+
+        Bukkit.getPluginManager().callEvent(LogicGameBoardChanged(this, Pair(x, y), board[x][y], state))
         board[x][y] = state
     }
 
