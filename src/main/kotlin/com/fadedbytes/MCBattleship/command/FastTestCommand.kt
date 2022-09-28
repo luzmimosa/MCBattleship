@@ -17,12 +17,29 @@ class FastTestCommand: CommandExecutor {
 
         if (GameMaster.isPlaying(sender)) {
 
+            sender.sendMessage("Disparando")
+
             val game = GameMaster.getLogicalGame(sender) ?: return true
 
-            val randomX = game.redPlayer.getRandomCoordinates().first
-            val randomY = game.redPlayer.getRandomCoordinates().second
+            var shootDone = false
 
-            game.redPlayer.fire(randomX, randomY)
+            do {
+                try {
+                    val randomX = game.redPlayer.getRandomCoordinates().first
+                    val randomY = game.redPlayer.getRandomCoordinates().second
+
+                    game.redPlayer.fire(randomX, randomY)
+
+                    shootDone = true
+                } catch (e: IllegalArgumentException) {
+                    continue
+                }
+            } while (!shootDone)
+
+
+
+            sender.sendMessage(game.bluePlayer.gameBoard.toString())
+            sender.sendMessage("${game.bluePlayer.gameBoard.getCurrentHealth()} / ${game.bluePlayer.gameBoard.getMaxHealth()}")
 
             return true
         }

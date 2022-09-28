@@ -1,21 +1,20 @@
 package com.fadedbytes.MCBattleship.game
 
+import com.fadedbytes.MCBattleship.BattleshipPlugin
 import com.fadedbytes.MCBattleship.worldboard.MinecraftGame
 import com.fadedbytes.MCBattleship.worldboard.WorldBoard
-import com.fadedbytes.MCBattleship.worldboard.events.LogicGameBoardChanged
 import org.bukkit.entity.Player
-import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
-class GameMaster: Listener {
+class GameMaster(plugin: BattleshipPlugin): Listener {
 
     companion object {
 
         private val playingPlayers: MutableMap<Player, MinecraftGame> = mutableMapOf()
-        val boardMap: MutableMap<GameBoard, WorldBoard> = mutableMapOf()
+        private val boardMap: MutableMap<GameBoard, WorldBoard> = mutableMapOf()
 
         fun startGameFor(player: Player): MinecraftGame {
-            if (playingPlayers.containsKey(player)) {
+            if (isPlaying(player)) {
                 throw IllegalStateException("Player is already playing a game")
             }
 
@@ -34,9 +33,12 @@ class GameMaster: Listener {
             return playingPlayers[player]?.logicGame
         }
 
-        @EventHandler
-        fun onLogicalBoardUpdate(event: LogicGameBoardChanged) {
-            boardMap[event.gameBoard]?.updateWorld()
+        fun getWorldBoard(gameBoard: GameBoard): WorldBoard? {
+            return boardMap[gameBoard]
+        }
+
+        fun pairGameBoard(gameBoard: GameBoard, worldBoard: WorldBoard) {
+            boardMap[gameBoard] = worldBoard
         }
     }
 

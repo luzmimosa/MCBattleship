@@ -13,9 +13,16 @@ class LogicGameBoardChanged(
     val to: CellState
     ) : Event(), BattleshipEvent, LogicGameboardEvent {
 
-    private val HANDLERS_LIST = HandlerList()
-
     override fun getHandlers(): HandlerList {
         return HANDLERS_LIST
+    }
+
+    companion object {
+
+        private val HANDLERS_LIST = HandlerList()
+        @JvmStatic
+        fun getHandlerList(): HandlerList {
+            return HandlerList()
+        }
     }
 }

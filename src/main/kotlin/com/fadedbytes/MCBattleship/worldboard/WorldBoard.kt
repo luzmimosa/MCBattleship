@@ -14,7 +14,7 @@ class WorldBoard(
     private val board: Array<Array<Material>> = Array(gameBoard.boardSize) { Array(gameBoard.boardSize) { Material.BLUE_TERRACOTTA } }
 
     init {
-        GameMaster.boardMap.put(gameBoard, this);
+        GameMaster.pairGameBoard(gameBoard, this)
         synchronizeBoards()
         updateWorld()
     }
@@ -33,6 +33,8 @@ class WorldBoard(
     }
 
     fun updateWorld() {
+        synchronizeBoards()
+
         val initialX = initialLocation.blockX
         val initialY = initialLocation.blockY
         val initialZ = initialLocation.blockZ

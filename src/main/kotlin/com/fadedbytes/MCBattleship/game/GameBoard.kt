@@ -2,6 +2,7 @@ package com.fadedbytes.MCBattleship.game
 
 import com.fadedbytes.MCBattleship.worldboard.events.LogicGameBoardChanged
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 
 class GameBoard(val boardSize: Int = 10) {
 
@@ -75,9 +76,12 @@ class GameBoard(val boardSize: Int = 10) {
     }
 
     fun setCellState(x: Int, y: Int, state: CellState) {
-
-        Bukkit.getPluginManager().callEvent(LogicGameBoardChanged(this, Pair(x, y), board[x][y], state))
         board[x][y] = state
+
+        GameMaster.getWorldBoard(this)?.let {
+            Bukkit.broadcastMessage("Updating world board")
+            it.updateWorld();
+        }
     }
 
     fun getShipAt(x: Int, y: Int): Ship? {
@@ -113,6 +117,24 @@ class GameBoard(val boardSize: Int = 10) {
         return health
     }
 
+    override fun toString(): String {
+
+        var str = ""
+
+        for (y in 0 until boardSize) {
+            for (x in 0 until boardSize) {
+                str += when (board[x][y]) {
+                    CellState.EMPTY -> "${ChatColor.BLUE}■ "
+                    CellState.SHIP -> "${ChatColor.WHITE}■ "
+                    CellState.HIT -> "${ChatColor.RED}■ "
+                    CellState.MISS -> "${ChatColor.GRAY}■ "
+                }
+            }
+            str += "\n"
+        }
+
+        return str
+    }
 }
 
 enum class CellState {
