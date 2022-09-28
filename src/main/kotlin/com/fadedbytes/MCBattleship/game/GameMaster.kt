@@ -1,12 +1,10 @@
 package com.fadedbytes.MCBattleship.game
 
-import com.fadedbytes.MCBattleship.BattleshipPlugin
 import com.fadedbytes.MCBattleship.worldboard.MinecraftGame
 import com.fadedbytes.MCBattleship.worldboard.WorldBoard
 import org.bukkit.entity.Player
-import org.bukkit.event.Listener
 
-class GameMaster(plugin: BattleshipPlugin): Listener {
+class GameMaster(){
 
     companion object {
 
@@ -19,8 +17,6 @@ class GameMaster(plugin: BattleshipPlugin): Listener {
             }
 
             val game = MinecraftGame(player, player.location)
-            playingPlayers[player] = game
-
             return game
 
         }
@@ -39,6 +35,10 @@ class GameMaster(plugin: BattleshipPlugin): Listener {
 
         fun pairGameBoard(gameBoard: GameBoard, worldBoard: WorldBoard) {
             boardMap[gameBoard] = worldBoard
+        }
+
+        fun pairPlayerGame(player: Player, game: MinecraftGame) {
+            playingPlayers[player] = game
         }
     }
 

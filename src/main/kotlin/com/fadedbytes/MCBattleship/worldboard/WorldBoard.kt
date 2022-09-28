@@ -23,10 +23,10 @@ class WorldBoard(
         for (x in 0 until gameBoard.boardSize) {
             for (y in 0 until gameBoard.boardSize) {
                 board[x][y] = when (gameBoard.getCellState(x, y)) {
-                    CellState.EMPTY -> Material.BLUE_TERRACOTTA
+                    CellState.EMPTY -> Material.BROWN_CONCRETE_POWDER
                     CellState.SHIP -> Material.BLACK_TERRACOTTA
                     CellState.HIT -> Material.RED_TERRACOTTA
-                    CellState.MISS -> Material.YELLOW_TERRACOTTA
+                    CellState.MISS -> Material.GRAY_TERRACOTTA
                 }
             }
         }

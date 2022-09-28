@@ -28,7 +28,7 @@ class FastTestCommand: CommandExecutor {
                     val randomX = game.redPlayer.getRandomCoordinates().first
                     val randomY = game.redPlayer.getRandomCoordinates().second
 
-                    game.redPlayer.fire(randomX, randomY)
+                    game.bluePlayer.fire(randomX, randomY)
 
                     shootDone = true
                 } catch (e: IllegalArgumentException) {
@@ -45,6 +45,7 @@ class FastTestCommand: CommandExecutor {
         }
 
         val game: MinecraftGame = GameMaster.startGameFor(sender)
+        game.start()
         sender.sendMessage("UwU")
 
         return true

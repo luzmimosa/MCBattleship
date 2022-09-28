@@ -1,6 +1,5 @@
 package com.fadedbytes.MCBattleship.game
 
-import com.fadedbytes.MCBattleship.worldboard.events.LogicGameBoardChanged
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 
@@ -21,6 +20,7 @@ class GameBoard(val boardSize: Int = 10) {
 
         if (shipCanBePlacedAt(ship, shipInfo)) {
             ships.put(ship, shipInfo)
+            updateWorldBoard()
         } else {
             throw IllegalArgumentException("Ship cannot be placed at the specified location")
         }
@@ -78,10 +78,7 @@ class GameBoard(val boardSize: Int = 10) {
     fun setCellState(x: Int, y: Int, state: CellState) {
         board[x][y] = state
 
-        GameMaster.getWorldBoard(this)?.let {
-            Bukkit.broadcastMessage("Updating world board")
-            it.updateWorld();
-        }
+        updateWorldBoard()
     }
 
     fun getShipAt(x: Int, y: Int): Ship? {
@@ -115,6 +112,13 @@ class GameBoard(val boardSize: Int = 10) {
             }
         }
         return health
+    }
+
+    private fun updateWorldBoard() {
+        GameMaster.getWorldBoard(this)?.let {
+            Bukkit.broadcastMessage("Updating world board")
+            it.updateWorld()
+        }
     }
 
     override fun toString(): String {

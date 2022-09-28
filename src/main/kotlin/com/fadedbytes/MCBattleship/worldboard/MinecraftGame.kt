@@ -1,30 +1,54 @@
 package com.fadedbytes.MCBattleship.worldboard
 
 import com.fadedbytes.MCBattleship.game.BattleshipGame
-import org.bukkit.Bukkit
+import com.fadedbytes.MCBattleship.game.GameMaster
 import org.bukkit.Location
 import org.bukkit.entity.Player
 
-class MinecraftGame(forPlayer: Player, at: Location) {
+class MinecraftGame(
+    val player: Player,
+    private val initialLocation: Location
+    ){
 
-    val logicGame = BattleshipGame(forPlayer)
-    val worldBoard: WorldBoard
+    val logicGame = BattleshipGame(player)
+    lateinit var radar: WorldBoard
 
-    private var state = GameState.PLACING_SHIPS
+    private var state = GameState.NONE
 
     init {
+        GameMaster.pairPlayerGame(player, this)
+    }
 
-        worldBoard = WorldBoard(logicGame.bluePlayer.gameBoard, at)
+    fun start() {
+        if (state != GameState.NONE) {
+            throw IllegalStateException("Game is already started")
+        }
 
-        logicGame.bluePlayer.placeAllShips()
+        this.createGame()
 
     }
 
-    fun playerTurn() {
+    private fun createGame() {
+        logicGame.let {
+            it.bluePlayer.placeAllShips()
+            it.redPlayer.placeAllShips()
+        }
+        setupRadar(initialLocation)
+    }
+
+    private fun setupRadar(radarOrigin: Location) {
+        radar = WorldBoard(logicGame.redPlayer.gameBoard, radarOrigin)
+    }
+
+    private fun playerTurn() {
 
     }
 
-    fun computerTurn() {
+    private fun computerTurn() {
+
+    }
+
+    private fun endGame() {
 
     }
 
