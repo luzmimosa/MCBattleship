@@ -11,7 +11,7 @@ abstract class MinecraftGameboard(
 
     val gameboardArea: BlockArea = BlockArea(
         initialLocation,
-        initialLocation.clone().add(gameboardSize.toDouble(), 0.0, gameboardSize.toDouble())
+        initialLocation.clone().add(gameboardSize.toDouble() - 1, 0.0, gameboardSize.toDouble() - 1)
     )
 
     /**

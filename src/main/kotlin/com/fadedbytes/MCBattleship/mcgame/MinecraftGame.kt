@@ -1,9 +1,17 @@
 package com.fadedbytes.MCBattleship.mcgame
 
 import com.fadedbytes.MCBattleship.game.BattleshipGame
-import com.fadedbytes.MCBattleship.mcgame.api.listeners.ShipPlacementListener
+import com.fadedbytes.MCBattleship.game.board.ship.Ship
+import com.fadedbytes.MCBattleship.game.board.ship.ShipInfo
+import com.fadedbytes.MCBattleship.mcgame.api.listeners.RadarMarkerListener
 import com.fadedbytes.MCBattleship.mcgame.features.RadarGameboard
+import net.md_5.bungee.api.ChatColor
+import net.md_5.bungee.api.ChatMessageType
+import net.md_5.bungee.api.chat.TextComponent
+import org.bukkit.Axis
+import org.bukkit.Bukkit
 import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
 class MinecraftGame(
@@ -15,7 +23,7 @@ class MinecraftGame(
     val logicGame = BattleshipGame(size)
     val radar = RadarGameboard(size, location)
 
-    lateinit var shipPlacementListener: ShipPlacementListener
+    lateinit var shipPlacementListener: RadarMarkerListener
 
     init {
         if (isPlaying(player)) {
@@ -50,8 +58,43 @@ class MinecraftGame(
         // Randomize computer ships
         logicGame.redPlayer.gameboard.randomizeShips()
 
-        shipPlacementListener = ShipPlacementListener(player, radar.gameboardArea, game = this)
+        placeNextShip(0)
+    }
 
+    private fun placeNextShip(index: Int) {
+        if (index >= Ship.values().size) {
+            endShipPlacement()
+            return
+        }
+
+        val ship = Ship.values()[index]
+        shipPlacementListener = RadarMarkerListener(
+            player,
+            radar.gameboardArea,
+            ship.size,
+            Material.BLACK_CONCRETE,
+            { x: Int, y: Int, axis: Axis ->
+                val canPlace = logicGame.bluePlayer.gameboard.canPlaceShip(ship, ShipInfo(x, y, axis == Axis.Z))
+                shipPlacementListener.material = if (canPlace) Material.BLACK_CONCRETE else Material.RED_CONCRETE
+                return@RadarMarkerListener canPlace
+            },
+            { x: Int, y: Int, axis: Axis ->
+                run {
+                    val info = ShipInfo(x, y, axis == Axis.Z)
+                    if (logicGame.bluePlayer.gameboard.canPlaceShip(ship, info)) {
+                        logicGame.bluePlayer.gameboard.placeShip(ship, info)
+                        shipPlacementListener.removeHologram()
+                        placeNextShip(index + 1)
+                    } else {
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.RED}Cannot place ship here"))
+                    }
+                }
+            }
+        )
+    }
+
+    private fun endShipPlacement() {
+        Bukkit.broadcastMessage("All ships placed")
     }
 
     fun updateAll() {
