@@ -1,7 +1,6 @@
 package com.fadedbytes.MCBattleship.command
 
-import com.fadedbytes.MCBattleship.game.GameMaster
-import com.fadedbytes.MCBattleship.worldboard.MinecraftGame
+import com.fadedbytes.MCBattleship.mcgame.MinecraftGame
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -15,38 +14,13 @@ class FastTestCommand: CommandExecutor {
             return true
         }
 
-        if (GameMaster.isPlaying(sender)) {
-
-            sender.sendMessage("Disparando")
-
-            val game = GameMaster.getLogicalGame(sender) ?: return true
-
-            var shootDone = false
-
-            do {
-                try {
-                    val randomX = game.redPlayer.getRandomCoordinates().first
-                    val randomY = game.redPlayer.getRandomCoordinates().second
-
-                    game.bluePlayer.fire(randomX, randomY)
-
-                    shootDone = true
-                } catch (e: IllegalArgumentException) {
-                    continue
-                }
-            } while (!shootDone)
-
-
-
-            sender.sendMessage(game.bluePlayer.gameBoard.toString())
-            sender.sendMessage("${game.bluePlayer.gameBoard.getCurrentHealth()} / ${game.bluePlayer.gameBoard.getMaxHealth()}")
-
+        if (MinecraftGame.isPlaying(sender)) {
+            sender.sendMessage("Ya estás jugando :(")
             return true
         }
 
-        val game: MinecraftGame = GameMaster.startGameFor(sender)
-        game.start()
-        sender.sendMessage("UwU")
+        MinecraftGame(sender, sender.location, 10)
+
 
         return true
     }
