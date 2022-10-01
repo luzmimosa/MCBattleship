@@ -1,6 +1,7 @@
-package com.fadedbytes.MCBattleship.mcgame.features
+package com.fadedbytes.MCBattleship.mcgame.features.radar
 
 import com.fadedbytes.MCBattleship.game.board.BattleshipGameboard
+import com.fadedbytes.MCBattleship.mcgame.features.MinecraftGameboard
 import org.bukkit.Location
 
 class RadarGameboard(

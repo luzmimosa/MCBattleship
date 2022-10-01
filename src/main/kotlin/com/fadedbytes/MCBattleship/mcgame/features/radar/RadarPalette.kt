@@ -1,13 +1,11 @@
-package com.fadedbytes.MCBattleship.mcgame.features
+package com.fadedbytes.MCBattleship.mcgame.features.radar
 
 import com.fadedbytes.MCBattleship.game.board.CellState
 import org.bukkit.Material
 
 @FunctionalInterface
 interface RadarPalette {
-
     fun getMaterial(state: CellState): Material
-
 }
 
 enum class RadarPalettes(val palette: RadarPalette) {

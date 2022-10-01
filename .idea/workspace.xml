@@ -9,14 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/HolographicPlaceholder.kt" afterDir="false" />
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Abstracted the hologram of the ship placement phase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/SimpleGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/SimpleGameboard.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/ShipPlacementListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/ShipPlacementListener.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/MinecraftGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/MinecraftGameboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/HolographicPlaceholder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/HolographicPlaceholder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/RadarGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarGameboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/RadarPalette.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarPalette.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +67,9 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pau\MCDev\Spigot Plugins\MCBattleship\src\main\kotlin\com\fadedbytes\MCBattleship\mcgame\features\radar" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.fadedbytes.MCBattleship.mcgame.api.listeners" />
@@ -160,7 +163,7 @@
       <workItem from="1664534511269" duration="8788000" />
       <workItem from="1664562193741" duration="296000" />
       <workItem from="1664562605303" duration="18743000" />
-      <workItem from="1664627642183" duration="5419000" />
+      <workItem from="1664627642183" duration="7631000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1664288322518</created>
@@ -232,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664620681012</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Abstracted the hologram of the ship placement phase">
+      <created>1664633924535</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664633924535</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +270,7 @@
     <MESSAGE value="Radars now show the enemy board. Improved the game start sequence" />
     <MESSAGE value="Added animations and logic for ship placement sequence" />
     <MESSAGE value="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game" />
+    <MESSAGE value="Abstracted the hologram of the ship placement phase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Abstracted the hologram of the ship placement phase" />
   </component>
 </project>

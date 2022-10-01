@@ -11,6 +11,7 @@ import org.bukkit.block.Block
 import org.bukkit.block.BlockFace
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
+import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
@@ -48,8 +49,11 @@ class RadarMarkerListener(
 
         // Return if the player is not the one we are tracking
         if (event.player != player) return
-        val player = event.player
 
+        updateHologram()
+    }
+
+    private fun updateHologram() {
         // Raytrace to find the block the player is looking at
         val raytrace = player.world.rayTraceBlocks(player.eyeLocation, player.location.direction, 20.0, FluidCollisionMode.NEVER, true)
 
@@ -81,7 +85,12 @@ class RadarMarkerListener(
         // Call the onHoverOverArea function, and move the hologram anyway
         currentBlock = block
         showHologramAt(block, raytrace.hitBlockFace ?: BlockFace.UP)
-        onHoverOverArea(x, y, currentAxis)
+
+        if (onHoverOverArea(x, y, currentAxis)) {
+            hologram?.team = HolographicPlaceholder.greenTeam
+        } else {
+            hologram?.team = HolographicPlaceholder.redTeam
+        }
     }
 
     private fun showHologramAt(block: Block, face: BlockFace) {
@@ -122,7 +131,7 @@ class RadarMarkerListener(
             Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK -> {
                 if (event.hand == EquipmentSlot.OFF_HAND) return
                 currentAxis = if (currentAxis == Axis.X) Axis.Z else Axis.X
-                showHologramAt(block, event.blockFace)
+                updateHologram()
             }
 
             else -> {}
@@ -133,6 +142,8 @@ class RadarMarkerListener(
     fun removeHologram() {
         hologram?.remove()
         hologram = null
+
+        HandlerList.unregisterAll(this)
     }
 
 }

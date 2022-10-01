@@ -113,6 +113,15 @@ class SimpleGameboard(
             }
         }
 
+        // Ship overlaps with another ship
+        for (i in 0 until ship.size) {
+            val x = if (info.vertical) info.x       else info.x + i
+            val y = if (info.vertical) info.y + i   else info.y
+            if (getCellState(x, y) != CellState.EMPTY) {
+                return false
+            }
+        }
+
         // Ship can be placed
 
         return true

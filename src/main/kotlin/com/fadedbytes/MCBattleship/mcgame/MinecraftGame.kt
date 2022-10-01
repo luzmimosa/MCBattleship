@@ -4,7 +4,7 @@ import com.fadedbytes.MCBattleship.game.BattleshipGame
 import com.fadedbytes.MCBattleship.game.board.ship.Ship
 import com.fadedbytes.MCBattleship.game.board.ship.ShipInfo
 import com.fadedbytes.MCBattleship.mcgame.api.listeners.RadarMarkerListener
-import com.fadedbytes.MCBattleship.mcgame.features.RadarGameboard
+import com.fadedbytes.MCBattleship.mcgame.features.radar.RadarGameboard
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
@@ -84,6 +84,9 @@ class MinecraftGame(
                     if (logicGame.bluePlayer.gameboard.canPlaceShip(ship, info)) {
                         logicGame.bluePlayer.gameboard.placeShip(ship, info)
                         shipPlacementListener.removeHologram()
+
+                        updateAll()
+
                         placeNextShip(index + 1)
                     } else {
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.RED}Cannot place ship here"))

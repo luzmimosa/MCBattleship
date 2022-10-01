@@ -1,13 +1,11 @@
 package com.fadedbytes.MCBattleship.mcgame.features
 
-import org.bukkit.Axis
-import org.bukkit.Bukkit
-import org.bukkit.Location
-import org.bukkit.Material
+import org.bukkit.*
 import org.bukkit.entity.ArmorStand
 import org.bukkit.entity.EntityType
 import org.bukkit.inventory.ItemStack
 import org.bukkit.scoreboard.Scoreboard
+import org.bukkit.scoreboard.Team
 import org.bukkit.util.Vector
 
 class HolographicPlaceholder(
@@ -20,13 +18,33 @@ class HolographicPlaceholder(
 
     companion object {
         var initialized = false
+        lateinit var redTeam: Team
+        lateinit var greenTeam: Team
         fun setupTeams() {
             val scoreboard: Scoreboard = Bukkit.getScoreboardManager()?.mainScoreboard ?: throw IllegalStateException("No scoreboard found")
+
+            scoreboard.getTeam("holo_placeholder_red")?.unregister()
+            scoreboard.getTeam("holo_placeholder_green")?.unregister()
+
+            redTeam = scoreboard.registerNewTeam("holo_placeholder_red")
+            greenTeam = scoreboard.registerNewTeam("holo_placeholder_green")
+
+            redTeam.color = ChatColor.RED
+            greenTeam.color = ChatColor.GREEN
+
+            initialized = true
         }
     }
 
     private val defaultOffset = Vector(0.5, -1.5, 0.5)
-    private val entities: MutableList<ArmorStand>
+    val entities: MutableList<ArmorStand>
+    var team: Team? = null
+        set(value) {
+            field = value
+            for (entity in entities) {
+                value?.addEntry(entity.uniqueId.toString())
+            }
+        }
 
     var material: Material = block
         set(value) {
@@ -42,16 +60,12 @@ class HolographicPlaceholder(
 
     init {
 
-        if (!initialized) setupTeams()
-
         if (size < 1) {
             throw IllegalArgumentException("Size must be greater than 0")
         }
 
         val totalSize = if (connectors) size * 2 - 1 else size
         entities = mutableListOf()
-
-        Bukkit.broadcastMessage("Creating holographic placeholder with size $totalSize ($size pieces)")
 
         for (i in 0 until totalSize) {
 
@@ -79,6 +93,9 @@ class HolographicPlaceholder(
         }
 
         move(initialLocation)
+
+        if (!initialized) setupTeams()
+        this.team = greenTeam
     }
 
     fun move(location: Location, offset: Vector = defaultOffset) {
