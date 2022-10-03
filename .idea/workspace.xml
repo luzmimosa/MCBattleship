@@ -10,7 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Updated game start logic. Early dev build is working">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/BattleshipGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/BattleshipGameboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/SimpleGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/SimpleGameboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/Canon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/Canon.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/FroglightCanon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/FroglightCanon.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarGameboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarGameboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarPalette.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/radar/RadarPalette.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

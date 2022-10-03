@@ -10,7 +10,7 @@ import org.bukkit.entity.Player
 class FastTestCommand: CommandExecutor {
 
     companion object {
-
+        var game: MinecraftGame? = null
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -20,11 +20,11 @@ class FastTestCommand: CommandExecutor {
         }
 
         try {
-            val radar = sender.location.world?.getBlockAt(args[0].toInt(), args[1].toInt(), args[2].toInt()) !!
-            val canon = sender.location.world?.getBlockAt(args[3].toInt(), args[4].toInt(), args[5].toInt()) !!
-            val shipboard = sender.location.world?.getBlockAt(args[6].toInt(), args[7].toInt(), args[8].toInt()) !!
+            val radar       = sender.location.world?.getBlockAt(args[0].toInt(), args[1].toInt(), args[2].toInt()) !!
+            val canon       = sender.location.world?.getBlockAt(args[3].toInt(), args[4].toInt(), args[5].toInt()) !!
+            val shipboard   = sender.location.world?.getBlockAt(args[6].toInt(), args[7].toInt(), args[8].toInt()) !!
 
-            val game = MinecraftGame(
+            game = MinecraftGame(
                 sender,
                 10,
                 radar,

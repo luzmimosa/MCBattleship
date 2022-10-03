@@ -33,25 +33,26 @@ class FroglightCanon(
         )
     )
 
-    override fun prepareShoot(fromCoords: Location?) {
+    override fun prepareShoot(fromCoords: Location?, afterShoot: () -> Unit) {
         if (fromCoords != null) {
-            particleTrail(fromCoords) {
-                activateBeam()
-                switchCanonLights(true) {
-                    Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
-                        shoot()
-                    }, 80)
-                    Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
-                        postShoot()
-                    }, 120)
+            particleTrail(fromCoords, {
+                    activateBeam()
+                    switchCanonLights(true) {
+                        Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
+                            shoot()
+                        }, 80)
+                        Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
+                            postShoot(afterShoot)
+                        }, 120)
+                    }
                 }
-            }
+            )
         } else {
             switchCanonLights(true) {switchCanonLights(false)}
         }
     }
 
-    private fun particleTrail(from: Location, onArrival: () -> Unit = {}) {
+    private fun particleTrail(from: Location, onArrival: () -> Unit = {}, speed: Float = 0.8f) {
 
         val origin = from.clone().toVector()
         val target = centerLocation.clone().toVector()
@@ -66,11 +67,11 @@ class FroglightCanon(
 
                 currentPosition = currentPosition.add(
                     direction.normalize().multiply(
-                        0.5
+                        speed
                     )
                 )
 
-                val dustOptions = DustOptions(Color.fromRGB(230, 55, 90), 1.0f)
+                val dustOptions = DustOptions(Color.fromRGB(255, 174, 0), 1.0f)
                 from.world?.spawnParticle(Particle.REDSTONE, currentPosition, 50, dustOptions)
 
                 if (currentPosition.distance(centerLocation) < 1) {
@@ -154,9 +155,11 @@ class FroglightCanon(
         switchCanonLights(false, 0L)
     }
 
-    override fun postShoot() {
+    override fun postShoot(afterShoot: () -> Unit) {
         centerLocation.world?.setStorm(false)
         centerLocation.block.type = Material.AIR
+
+        afterShoot()
     }
 
 

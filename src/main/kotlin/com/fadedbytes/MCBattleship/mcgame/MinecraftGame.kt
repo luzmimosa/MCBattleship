@@ -6,13 +6,12 @@ import com.fadedbytes.MCBattleship.game.board.ship.ShipInfo
 import com.fadedbytes.MCBattleship.mcgame.api.listeners.RadarMarkerListener
 import com.fadedbytes.MCBattleship.mcgame.features.canon.FroglightCanon
 import com.fadedbytes.MCBattleship.mcgame.features.radar.RadarGameboard
+import com.fadedbytes.MCBattleship.mcgame.features.radar.RadarPalettes
 import com.fadedbytes.MCBattleship.mcgame.features.shipboard.Shipboard
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
-import org.bukkit.Axis
-import org.bukkit.Bukkit
-import org.bukkit.Material
+import org.bukkit.*
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
 
@@ -25,11 +24,11 @@ class MinecraftGame(
 ) {
 
     val logicGame = BattleshipGame(size)
-    val radar = RadarGameboard(size, radarLocation.location)
+    val radar = RadarGameboard(size, radarLocation.location, true)
     val canon = FroglightCanon(canonLocation.location)
     val shipboard = Shipboard(logicGame.bluePlayer.gameboard, shipboardLocation.location)
 
-    lateinit var shipPlacementListener: RadarMarkerListener
+    lateinit var radarPointer: RadarMarkerListener
 
     init {
         if (isPlaying(player)) {
@@ -56,6 +55,7 @@ class MinecraftGame(
     }
 
     private fun setupRadar() {
+        Bukkit.broadcastMessage("Syncronizing radar...")
         radar.syncWithGameboard(logicGame.bluePlayer.gameboard)
     }
 
@@ -74,14 +74,14 @@ class MinecraftGame(
         }
 
         val ship = Ship.values()[index]
-        shipPlacementListener = RadarMarkerListener(
+        radarPointer = RadarMarkerListener(
             player,
             radar.gameboardArea,
             ship.size,
             Material.BLACK_CONCRETE,
             { x: Int, y: Int, axis: Axis ->
                 val canPlace = logicGame.bluePlayer.gameboard.canPlaceShip(ship, ShipInfo(x, y, axis == Axis.Z))
-                shipPlacementListener.material = if (canPlace) Material.BLACK_CONCRETE else Material.RED_CONCRETE
+                radarPointer.material = if (canPlace) Material.BLACK_CONCRETE else Material.RED_CONCRETE
                 return@RadarMarkerListener canPlace
             },
             { x: Int, y: Int, axis: Axis ->
@@ -89,9 +89,10 @@ class MinecraftGame(
                     val info = ShipInfo(x, y, axis == Axis.Z)
                     if (logicGame.bluePlayer.gameboard.canPlaceShip(ship, info)) {
                         logicGame.bluePlayer.gameboard.placeShip(ship, info)
-                        shipPlacementListener.removeHologram()
+                        radarPointer.removeHologram()
 
                         updateAll()
+                        shipboard.placeShips()
 
                         placeNextShip(index + 1)
                     } else {
@@ -104,7 +105,60 @@ class MinecraftGame(
 
     private fun endShipPlacement() {
         Bukkit.broadcastMessage("All ships placed")
-        shipboard.placeShips()
+        radar.palette = RadarPalettes.ENEMY.palette
+        radar.showShips = false
+        onPlayerTurn()
+    }
+
+    private fun onPlayerTurn() {
+        showEnemyRadar()
+        radarPointer = RadarMarkerListener(
+            player,
+            radar.gameboardArea,
+            1,
+            Material.SCULK_SHRIEKER,
+            {x, y, axis ->
+                val canShoot = logicGame.redPlayer.gameboard.canShoot(x, y)
+                radarPointer.material = if (canShoot) Material.SCULK_SHRIEKER else Material.BARRIER
+                return@RadarMarkerListener canShoot
+            },
+            {x, y, axis ->
+                if (!logicGame.redPlayer.gameboard.canShoot(x, y)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.RED}Cannot shoot here"))
+                    return@RadarMarkerListener
+                }
+
+                val hit = logicGame.redPlayer.gameboard.registerFire(x, y)
+                radarPointer.removeHologram()
+
+                canon.prepareShoot(radar.gameboardArea.getRelativeBlock(x, 0, y).location) {
+                    showEnemyRadar()
+                    if (hit) {
+                        onPlayerHit()
+                    } else {
+                        onPlayerMiss()
+                    }
+
+                    onPlayerTurn()
+                }
+            }
+        )
+
+    }
+
+    private fun onPlayerHit() {
+        player.playSound(player.location, Sound.ENTITY_ARROW_HIT_PLAYER, 1f, 2f)
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.GREEN}Hit!"))
+    }
+
+    private fun onPlayerMiss() {
+        player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 0.5f)
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.RED}Miss!"))
+    }
+
+    private fun showEnemyRadar() {
+        radar.showShips = false
+        radar.syncWithGameboard(logicGame.redPlayer.gameboard)
     }
 
     fun updateAll() {

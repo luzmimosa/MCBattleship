@@ -62,4 +62,9 @@ interface BattleshipGameboard {
      */
     fun canPlaceShip(ship: Ship, info: ShipInfo): Boolean
 
+    /**
+     * @return whether the specified cell can be fired at.
+     */
+    fun canShoot(x: Int, y: Int): Boolean
+
 }

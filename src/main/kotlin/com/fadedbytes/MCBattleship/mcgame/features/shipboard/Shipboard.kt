@@ -4,6 +4,7 @@ import com.fadedbytes.MCBattleship.game.board.BattleshipGameboard
 import com.fadedbytes.MCBattleship.game.board.SimpleGameboard
 import com.fadedbytes.MCBattleship.util.BlockArea
 import org.bukkit.Location
+import org.bukkit.Material
 
 class Shipboard(
     val gameboard: BattleshipGameboard,
@@ -47,11 +48,20 @@ class Shipboard(
         val y1 = originLocation.y
         val z1 = originLocation.z + y * tileSize
 
-        val x2 = x1 + tileSize
-        val y2 = y1 + tileSize
-        val z2 = z1 + tileSize
+        val x2 = x1 + tileSize - 1
+        val y2 = y1 + tileSize - 1
+        val z2 = z1 + tileSize - 1
 
         return BlockArea(Location(originLocation.world, x1, y1, z1), Location(originLocation.world, x2, y2, z2))
+    }
+
+    fun clear() {
+        for (x in 0 until gameboard.size) {
+            for (y in 0 until gameboard.size) {
+                val area = getAreaOfCell(x, y)
+                area.fill(Material.AIR)
+            }
+        }
     }
 
 

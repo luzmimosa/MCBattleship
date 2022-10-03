@@ -4,10 +4,10 @@ import org.bukkit.Location
 
 interface Canon {
 
-    fun prepareShoot(fromCoords: Location? = null)
+    fun prepareShoot(fromCoords: Location? = null, afterShoot: () -> Unit)
 
     fun shoot()
 
-    fun postShoot()
+    fun postShoot(afterShoot: () -> Unit)
 
 }

@@ -29,6 +29,10 @@ class SimpleGameboard(
     }
 
     override fun registerFire(x: Int, y: Int): Boolean {
+
+        if (!canShoot(x, y)) {
+            throw IllegalArgumentException("This cell can not be fired")
+        }
         val currentState = getCellState(x, y)
 
         when (currentState) {
@@ -125,6 +129,14 @@ class SimpleGameboard(
         // Ship can be placed
 
         return true
+    }
+
+    override fun canShoot(x: Int, y: Int): Boolean {
+        if (x < 0 || x >= size || y < 0 || y >= size) {
+            return false
+        }
+        val state = getCellState(x, y)
+        return state == CellState.EMPTY || state == CellState.SHIP
     }
 
     override fun toString(): String {
