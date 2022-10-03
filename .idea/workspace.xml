@@ -9,14 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Modified test command in order to test the froglight canon">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/ShipPlacer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Updated game start logic. Early dev build is working">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/util/BlockArea.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/util/BlockArea.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,6 +163,7 @@
       <workItem from="1664721220510" duration="3295000" />
       <workItem from="1664734162070" duration="2215000" />
       <workItem from="1664752157335" duration="2127000" />
+      <workItem from="1664803706508" duration="382000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1664288322518</created>
@@ -268,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664724546698</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Updated game start logic. Early dev build is working">
+      <created>1664803909471</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1664803909471</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +302,7 @@
     <MESSAGE value="Visual ship placement system finished and implemented" />
     <MESSAGE value="Canon implemented. It fires a magic beam when shooting the enemy" />
     <MESSAGE value="Modified test command in order to test the froglight canon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified test command in order to test the froglight canon" />
+    <MESSAGE value="Updated game start logic. Early dev build is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated game start logic. Early dev build is working" />
   </component>
 </project>
