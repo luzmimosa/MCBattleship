@@ -2,28 +2,15 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="MCBattleship_1.19.2:jar" />
+      <artifact name="MCBattleship:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Fast test command added: now, we can debug in-game easily">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/events/BattleshipEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/events/GameChangedGameStateEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/events/LogicGameBoardChanged.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" afterDir="false" />
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Updated game start logic. Early dev build is working">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/GameBoard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/GameBoard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/GameMaster.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/GameMaster.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/player/BattleshipPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/player/BattleshipPlayer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/player/ComputerPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/player/ComputerPlayer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/MinecraftGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/WorldBoard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/worldboard/WorldBoard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Kotlin Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
@@ -55,15 +43,16 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pauet/Projects/MCBattleship/TestServer/plugins&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pau/.m2/repository/org/spigotmc/spigot-api/1.19.2-R0.1-SNAPSHOT/spigot-api-1.19.2-R0.1-SNAPSHOT.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -73,15 +62,19 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pau\MCDev\Spigot Plugins\MCBattleship\src\main\kotlin\com\fadedbytes\MCBattleship\mcgame\features\radar" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.fadedbytes.MCBattleship.mcgame.api.listeners" />
       <recent name="com.fadedbytes.MCBattleship.game.player" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.fadedbytes.MCBattleship.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameBoardTest">
-    <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.BattleshipGameTest.players are full health only after ship placing">
+    <configuration name="BattleshipGameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="consoleApp" />
       <extension name="coverage">
         <pattern>
@@ -90,8 +83,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.fadedbytes.MCBattleship.game" />
-      <option name="MAIN_CLASS_NAME" value="com.fadedbytes.MCBattleship.game.GameBoardTest" />
+      <option name="MAIN_CLASS_NAME" value="com.fadedbytes.MCBattleship.game.BattleshipGameTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BattleshipGameTest.players are full health only after ship placing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="consoleApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fadedbytes.MCBattleship.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fadedbytes.MCBattleship.game" />
+      <option name="MAIN_CLASS_NAME" value="com.fadedbytes.MCBattleship.game.BattleshipGameTest" />
+      <option name="METHOD_NAME" value="players are full health only after ship placing" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,12 +129,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.GameBoardTest" />
+      <item itemvalue="JUnit.BattleshipGameTest" />
+      <item itemvalue="JUnit.BattleshipGameTest.players are full health only after ship placing" />
       <item itemvalue="Maven.Plugin build" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GameBoardTest" />
+        <item itemvalue="JUnit.BattleshipGameTest.players are full health only after ship placing" />
+        <item itemvalue="JUnit.BattleshipGameTest" />
       </list>
     </recent_temporary>
   </component>
@@ -141,6 +152,18 @@
       <workItem from="1664287419151" duration="37000" />
       <workItem from="1664287472564" duration="243000" />
       <workItem from="1664287726047" duration="14196000" />
+      <workItem from="1664356357234" duration="71000" />
+      <workItem from="1664356553487" duration="10717000" />
+      <workItem from="1664534511269" duration="8788000" />
+      <workItem from="1664562193741" duration="296000" />
+      <workItem from="1664562605303" duration="18743000" />
+      <workItem from="1664627642183" duration="7757000" />
+      <workItem from="1664705049697" duration="6516000" />
+      <workItem from="1664718757449" duration="2356000" />
+      <workItem from="1664721220510" duration="3295000" />
+      <workItem from="1664734162070" duration="2215000" />
+      <workItem from="1664752157335" duration="2127000" />
+      <workItem from="1664803706508" duration="382000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1664288322518</created>
@@ -170,7 +193,84 @@
       <option name="project" value="LOCAL" />
       <updated>1664297092547</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="The game test now works properly">
+      <created>1664361646275</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664361646275</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Removed custom events as kotlin can't make them work">
+      <created>1664367978559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664367978559</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Removed event launch">
+      <created>1664368022114</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1664368022114</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Radars now show the enemy board. Improved the game start sequence">
+      <created>1664370446830</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664370446830</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Radars now show the enemy board. Improved the game start sequence">
+      <created>1664370579900</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664370579900</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game">
+      <created>1664620681012</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664620681012</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Abstracted the hologram of the ship placement phase">
+      <created>1664633924535</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664633924535</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Visual ship placement system finished and implemented">
+      <created>1664636203158</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664636203158</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Canon implemented. It fires a magic beam when shooting the enemy">
+      <created>1664724519040</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664724519040</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modified test command in order to test the froglight canon">
+      <created>1664724546698</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1664724546698</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updated game start logic. Early dev build is working">
+      <created>1664803909471</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1664803909471</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +292,17 @@
     <MESSAGE value="Game logic added" />
     <MESSAGE value="Some logic added" />
     <MESSAGE value="Fast test command added: now, we can debug in-game easily" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fast test command added: now, we can debug in-game easily" />
+    <MESSAGE value="The game test now works properly" />
+    <MESSAGE value="Removed custom events as kotlin can't make them work" />
+    <MESSAGE value="Removed event launch" />
+    <MESSAGE value="Radars now show the enemy board. Improved the game start sequence" />
+    <MESSAGE value="Added animations and logic for ship placement sequence" />
+    <MESSAGE value="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game" />
+    <MESSAGE value="Abstracted the hologram of the ship placement phase" />
+    <MESSAGE value="Visual ship placement system finished and implemented" />
+    <MESSAGE value="Canon implemented. It fires a magic beam when shooting the enemy" />
+    <MESSAGE value="Modified test command in order to test the froglight canon" />
+    <MESSAGE value="Updated game start logic. Early dev build is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated game start logic. Early dev build is working" />
   </component>
 </project>

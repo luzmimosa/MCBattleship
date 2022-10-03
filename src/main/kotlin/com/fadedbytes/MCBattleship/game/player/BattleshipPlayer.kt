@@ -1,50 +1,52 @@
 package com.fadedbytes.MCBattleship.game.player
 
-import com.fadedbytes.MCBattleship.game.BattleshipGame
-import com.fadedbytes.MCBattleship.game.GameBoard
-import com.fadedbytes.MCBattleship.game.Ship
-import com.fadedbytes.MCBattleship.game.ShipInfo
+import com.fadedbytes.MCBattleship.game.board.BattleshipGameboard
+import com.fadedbytes.MCBattleship.game.board.CellState
 
+/**
+ * A battleship player has a gameboard and a health bar. The current health is the
+ * current number of ship cells at the gameboard. The max health is the current
+ * health plus the number of ship cells that have been hit.
+ */
 interface BattleshipPlayer {
 
-    val linkedGame: BattleshipGame
-    val gameBoard: GameBoard
+    /**
+     * The gameboard linked to this player
+     */
+    val gameboard: BattleshipGameboard
 
-    var lastShotIsHit: Boolean
-
-    fun placeShip(shipType: Ship, x: Int, y: Int, vertical: Boolean) {
-        gameBoard.addShip(shipType, ShipInfo(x, y, vertical))
-    }
-
-    fun fire(x: Int, y: Int) {
-        this.lastShotIsHit = linkedGame.getEnemyPlayer(this).gameBoard.fireAt(x, y)
-    }
-
-    fun placeAllShips() {
-        for (ship: Ship in Ship.values()) {
-            var iterations = 0;
-            while (true) {
-                if (iterations > 30) {
-                    break
-                }
-                val coords = this.getRandomCoordinates()
-                try {
-                    this.placeShip(ship, coords.first, coords.second, Math.random() < 0.5)
-                    break
-                } catch (e: IllegalArgumentException) {
-                    iterations++;
-                    continue
+    /**
+     * The max health of this player
+     */
+    fun maxHealth(): Int {
+        var health = 0
+        for (x in 0 until gameboard.size) {
+            for (y in 0 until gameboard.size) {
+                when (gameboard.getCellState(x, y)) {
+                    CellState.SHIP, CellState.HIT -> health++
+                    else -> {}
                 }
             }
         }
+        return health
     }
 
-    fun getRandomCoordinates(): Pair<Int, Int> {
-        val x = (0 until this.gameBoard.boardSize).random()
-        val y = (0 until this.gameBoard.boardSize).random()
-        return Pair(x, y)
+    /**
+     * The current health of this player
+     */
+    fun health(): Int {
+        var health = 0
+        for (x in 0 until gameboard.size) {
+            for (y in 0 until gameboard.size) {
+                when (gameboard.getCellState(x, y)) {
+                    CellState.SHIP -> health++
+                    else -> {}
+                }
+            }
+        }
+        return health
     }
 
-    fun endGame()
+
 
 }
