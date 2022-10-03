@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Visual ship placement system finished and implemented">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/Canon.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/canon/FroglightCanon.kt" afterDir="false" />
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Modified test command in order to test the froglight canon">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/ShipPlacer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/util/BlockArea.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/util/BlockArea.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +166,9 @@
       <workItem from="1664627642183" duration="7757000" />
       <workItem from="1664705049697" duration="6516000" />
       <workItem from="1664718757449" duration="2356000" />
-      <workItem from="1664721220510" duration="3148000" />
+      <workItem from="1664721220510" duration="3295000" />
+      <workItem from="1664734162070" duration="2215000" />
+      <workItem from="1664752157335" duration="2127000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1664288322518</created>
@@ -249,7 +254,21 @@
       <option name="project" value="LOCAL" />
       <updated>1664636203158</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Canon implemented. It fires a magic beam when shooting the enemy">
+      <created>1664724519040</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664724519040</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modified test command in order to test the froglight canon">
+      <created>1664724546698</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1664724546698</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +298,8 @@
     <MESSAGE value="Added animations and logic for ship placement sequence. Now, logic game is independent of visual minecraft game" />
     <MESSAGE value="Abstracted the hologram of the ship placement phase" />
     <MESSAGE value="Visual ship placement system finished and implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visual ship placement system finished and implemented" />
+    <MESSAGE value="Canon implemented. It fires a magic beam when shooting the enemy" />
+    <MESSAGE value="Modified test command in order to test the froglight canon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified test command in order to test the froglight canon" />
   </component>
 </project>

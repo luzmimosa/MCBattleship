@@ -82,14 +82,14 @@ class BlockArea(
 
 class BlockAreaIterator(val area: BlockArea): Iterator<Block> {
 
-    val index = 0
+    var index = 0
 
     override fun hasNext(): Boolean {
         return area.getBlocks().size > index
     }
 
     override fun next(): Block {
-        return area.getBlocks()[index]
+        return area.getBlocks()[index++]
     }
 
 }

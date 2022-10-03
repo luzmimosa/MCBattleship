@@ -4,24 +4,30 @@ import com.fadedbytes.MCBattleship.game.BattleshipGame
 import com.fadedbytes.MCBattleship.game.board.ship.Ship
 import com.fadedbytes.MCBattleship.game.board.ship.ShipInfo
 import com.fadedbytes.MCBattleship.mcgame.api.listeners.RadarMarkerListener
+import com.fadedbytes.MCBattleship.mcgame.features.canon.FroglightCanon
 import com.fadedbytes.MCBattleship.mcgame.features.radar.RadarGameboard
+import com.fadedbytes.MCBattleship.mcgame.features.shipboard.Shipboard
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.Axis
 import org.bukkit.Bukkit
-import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.block.Block
 import org.bukkit.entity.Player
 
 class MinecraftGame(
     val player: Player,
-    val location: Location,
-    val size: Int
+    val size: Int,
+    radarLocation: Block,
+    canonLocation: Block,
+    shipboardLocation: Block,
 ) {
 
     val logicGame = BattleshipGame(size)
-    val radar = RadarGameboard(size, location)
+    val radar = RadarGameboard(size, radarLocation.location)
+    val canon = FroglightCanon(canonLocation.location)
+    val shipboard = Shipboard(logicGame.bluePlayer.gameboard, shipboardLocation.location)
 
     lateinit var shipPlacementListener: RadarMarkerListener
 
@@ -98,6 +104,7 @@ class MinecraftGame(
 
     private fun endShipPlacement() {
         Bukkit.broadcastMessage("All ships placed")
+        shipboard.placeShips()
     }
 
     fun updateAll() {
