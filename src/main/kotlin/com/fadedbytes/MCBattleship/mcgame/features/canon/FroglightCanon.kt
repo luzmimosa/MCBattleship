@@ -20,6 +20,8 @@ class FroglightCanon(
 
 ): Canon {
 
+    private var stopped = false
+
     private val canonArea = BlockArea(
         centerLocation.clone().add(
             (-structureRadius).toDouble(),
@@ -85,6 +87,8 @@ class FroglightCanon(
     }
 
     private fun switchCanonLights(switchOn: Boolean, ticksPerLayer: Long = 2, onSwitch: () -> Unit = {}) {
+        if (stopped && switchOn) return
+
         val blocks = canonArea.getBlocks()
 
         //filter blocks by layers
@@ -114,6 +118,8 @@ class FroglightCanon(
     }
 
     private fun lightBlock(block: Block) {
+        if (stopped) return
+
         block.type = when (block.type) {
             Material.WHITE_TERRACOTTA -> Material.OCHRE_FROGLIGHT
             Material.WHITE_CONCRETE -> Material.PEARLESCENT_FROGLIGHT
@@ -160,6 +166,11 @@ class FroglightCanon(
         centerLocation.block.type = Material.AIR
 
         afterShoot()
+    }
+
+    override fun forceStop(afterStop: () -> Unit) {
+        this.stopped = true
+        postShoot(afterStop)
     }
 
 
