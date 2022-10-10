@@ -75,10 +75,18 @@ class BattleshipGame(
                 }
             }
             GameState.BLUE_TURN -> {
-                gameState = GameState.RED_TURN
+                gameState = if (redPlayer.health() == 0) {
+                    GameState.BLUE_WON
+                } else {
+                    GameState.RED_TURN
+                }
             }
             GameState.RED_TURN -> {
-                gameState = GameState.BLUE_TURN
+                gameState = if (bluePlayer.health() == 0) {
+                    GameState.RED_WON
+                } else {
+                    GameState.BLUE_TURN
+                }
             }
             GameState.BLUE_WON -> {
                 throw IllegalStateException("Game is already over")

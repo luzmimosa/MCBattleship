@@ -23,7 +23,7 @@ class MinecraftGame(
     val radarLocation: Block,
     canonLocation: Block,
     shipboardLocation: Block,
-    val onGameEnd: (MinecraftGame) -> Unit
+    val onGameEnd: (game: MinecraftGame) -> Unit
 ) {
 
     val logicGame = BattleshipGame(size)
@@ -173,6 +173,9 @@ class MinecraftGame(
         radar.gameboardArea.fill(Material.AIR)
         shipboard.clear()
         canon.forceStop()
+        radarPointer.removeHologram()
+
+        playersPlaying.remove(player)
 
         onGameEnd(this)
     }
@@ -202,24 +205,36 @@ class MinecraftGame(
                 val hit =  logicGame.bluePlayer.gameboard.registerFire(x, y)
                 shooted = true
 
+
                 Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
-                    shipboard.receiveShoot(x, y, hit)
+                    player.playSound(player.location, Sound.ENTITY_WARDEN_SONIC_CHARGE, 1f, 0f)
 
                     Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
-                        nextTurn()
-                    }, 20L)
-                }, 40L)
+                        shipboard.receiveShoot(x, y, hit)
+                        player.playSound(player.location, Sound.ENTITY_WARDEN_SONIC_BOOM, 1f, 0f)
+
+                        Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
+                            nextTurn()
+                        }, 20L)
+                    }, 60L)
+                }, (40L until 120L).random())
             }
 
         } while (!shooted)
     }
 
     private fun onPlayerWon() {
+        player.sendTitle("${ChatColor.GREEN}You won!", "", 10, 40, 10)
+        player.playSound(player.location, Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f)
 
+        endGame()
     }
 
     private fun onComputerWon() {
+        player.sendTitle("${ChatColor.RED}You lost!", "", 10, 40, 10)
+        player.playSound(player.location, Sound.ENTITY_WARDEN_AGITATED, 1f, 0f)
 
+        endGame()
     }
 
 }

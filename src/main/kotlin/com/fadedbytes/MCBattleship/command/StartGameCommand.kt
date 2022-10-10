@@ -1,5 +1,6 @@
 package com.fadedbytes.MCBattleship.command
 
+import com.fadedbytes.MCBattleship.BattleshipPlugin
 import com.fadedbytes.MCBattleship.mcgame.MinecraftGame
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
@@ -19,12 +20,16 @@ class StartGameCommand: CommandExecutor {
 
             MinecraftGame.worldInfoManager.getInfo(sender.location.world!!)?.let {
 
-                MinecraftGame(
-                    sender,
-                    10,
-                    it.radarLocation.block,
-                    it.canonLocation.block,
-                    it.shipboardLocation.block
+                BattleshipPlugin.activeGames.add(
+                    MinecraftGame(
+                        sender,
+                        10,
+                        it.radarLocation.block,
+                        it.canonLocation.block,
+                        it.shipboardLocation.block
+                    ) {game ->
+                        BattleshipPlugin.activeGames.remove(game)
+                    }
                 )
 
                 sender.sendMessage("${ChatColor.GREEN}Game started")

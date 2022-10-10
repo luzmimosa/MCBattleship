@@ -10,20 +10,22 @@ class CrystalShipPlacer: ShipPlacer {
 
     override fun placeShip(ship: Ship, area: BlockArea, tileSize: Int) {
 
-        val mainMaterial = when (ship) {
-            Ship.CARRIER    -> Material.BLUE_STAINED_GLASS
-            Ship.BATTLESHIP -> Material.ORANGE_STAINED_GLASS
-            Ship.DESTROYER  -> Material.GREEN_STAINED_GLASS
-            Ship.SUBMARINE  -> Material.BROWN_STAINED_GLASS
-            Ship.CRUISER    -> Material.BLACK_STAINED_GLASS
+        val mainMaterial = when (ship.name) {
+            "CARRIER"       -> Material.BLUE_STAINED_GLASS
+            "BATTLESHIP"    -> Material.ORANGE_STAINED_GLASS
+            "DESTROYER"     -> Material.GREEN_STAINED_GLASS
+            "SUBMARINE"     -> Material.BROWN_STAINED_GLASS
+            "CRUISER"       -> Material.BLACK_STAINED_GLASS
+            else            -> Material.WHITE_STAINED_GLASS
         }
 
-        val secondaryMaterial = when (ship) {
-            Ship.CARRIER    -> Material.LIGHT_BLUE_STAINED_GLASS
-            Ship.BATTLESHIP -> Material.YELLOW_STAINED_GLASS
-            Ship.DESTROYER  -> Material.LIME_STAINED_GLASS
-            Ship.SUBMARINE  -> Material.RED_STAINED_GLASS
-            Ship.CRUISER    -> Material.WHITE_STAINED_GLASS
+        val secondaryMaterial = when (ship.name) {
+            "CARRIER"       -> Material.LIGHT_BLUE_STAINED_GLASS
+            "BATTLESHIP"    -> Material.YELLOW_STAINED_GLASS
+            "DESTROYER"     -> Material.LIME_STAINED_GLASS
+            "SUBMARINE"     -> Material.RED_STAINED_GLASS
+            "CRUISER"       -> Material.WHITE_STAINED_GLASS
+            else            -> Material.BLACK_STAINED_GLASS
         }
 
         val xLength = area.getBlocks().maxOf { it.x } - area.getBlocks().minOf { it.x }
