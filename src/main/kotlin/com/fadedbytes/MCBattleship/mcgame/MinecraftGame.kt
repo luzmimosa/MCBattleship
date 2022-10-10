@@ -117,12 +117,12 @@ class MinecraftGame(
             radar.gameboardArea,
             1,
             Material.SCULK_SHRIEKER,
-            {x, y, axis ->
+            {x, y, _ ->
                 val canShoot = logicGame.redPlayer.gameboard.canShoot(x, y)
                 radarPointer.material = if (canShoot) Material.SCULK_SHRIEKER else Material.BARRIER
                 return@RadarMarkerListener canShoot
             },
-            {x, y, axis ->
+            {x, y, _ ->
                 if (!logicGame.redPlayer.gameboard.canShoot(x, y)) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("${ChatColor.RED}Cannot shoot here"))
                     return@RadarMarkerListener
