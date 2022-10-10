@@ -9,14 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Added game turn logic and enemy behaviour">
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Game end sequence improved">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/LeaveGameCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/BattleshipGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/BattleshipGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/ship/Ship.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/game/board/ship/Ship.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/fadedbytes/MCBattleship/game/BattleshipGameTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665401839112</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Game end sequence improved">
+      <created>1665403854019</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1665403854019</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +334,7 @@
     <MESSAGE value="Updated game start logic. Early dev build is working" />
     <MESSAGE value="Optimized lambdas" />
     <MESSAGE value="Added game turn logic and enemy behaviour" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added game turn logic and enemy behaviour" />
+    <MESSAGE value="Game end sequence improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game end sequence improved" />
   </component>
 </project>

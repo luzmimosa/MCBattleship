@@ -20,7 +20,7 @@ import org.bukkit.entity.Player
 class MinecraftGame(
     val player: Player,
     val size: Int,
-    val radarLocation: Block,
+    radarLocation: Block,
     canonLocation: Block,
     shipboardLocation: Block,
     val onGameEnd: (game: MinecraftGame) -> Unit
@@ -59,7 +59,6 @@ class MinecraftGame(
     }
 
     private fun setupRadar() {
-        Bukkit.broadcastMessage("Syncronizing radar...")
         radar.syncWithGameboard(logicGame.bluePlayer.gameboard)
     }
 

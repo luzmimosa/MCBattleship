@@ -15,3 +15,6 @@ commands:
   setup:
     description: Setup a new game in the current world
     usage: /setup <radarX> <radarY> <radarZ> <canonX> <canonY> <canonZ> <shipboardX> <shipboardY> <shipboardZ>
+  leave:
+    description: Leave the current game
+    usage: /leave

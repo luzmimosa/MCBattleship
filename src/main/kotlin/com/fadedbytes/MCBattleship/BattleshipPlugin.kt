@@ -1,6 +1,7 @@
 package com.fadedbytes.MCBattleship
 
 import com.fadedbytes.MCBattleship.command.FastTestCommand
+import com.fadedbytes.MCBattleship.command.LeaveGameCommand
 import com.fadedbytes.MCBattleship.mcgame.MinecraftGame
 import com.fadedbytes.MCBattleship.command.SetupCommand
 import com.fadedbytes.MCBattleship.command.StartGameCommand
@@ -22,6 +23,7 @@ class BattleshipPlugin: JavaPlugin() {
         super.getCommand("test")?.setExecutor(FastTestCommand())
         super.getCommand("start")?.setExecutor(StartGameCommand())
         super.getCommand("setup")?.setExecutor(SetupCommand())
+        super.getCommand("leave")?.setExecutor(LeaveGameCommand())
 
         PlayerIsolatorListener(this)
     }
