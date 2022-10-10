@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent
 import org.bukkit.event.player.PlayerEvent
 import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.event.player.PlayerToggleFlightEvent
 import org.bukkit.plugin.RegisteredListener
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -52,7 +53,8 @@ class PlayerIsolatorListener(plugin: JavaPlugin): Listener {
         return listOf(
             PlayerMoveEvent::class.java,
             PlayerItemHeldEvent::class.java,
-            PlayerCommandPreprocessEvent::class.java
+            PlayerCommandPreprocessEvent::class.java,
+            PlayerToggleFlightEvent::class.java
         )
     }
 

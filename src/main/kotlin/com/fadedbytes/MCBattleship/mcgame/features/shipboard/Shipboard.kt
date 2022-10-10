@@ -5,6 +5,9 @@ import com.fadedbytes.MCBattleship.game.board.SimpleGameboard
 import com.fadedbytes.MCBattleship.util.BlockArea
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.Particle
+import org.bukkit.entity.EntityType
+import kotlin.math.floor
 
 class Shipboard(
     val gameboard: BattleshipGameboard,
@@ -13,6 +16,10 @@ class Shipboard(
 ) {
 
     val shipPlacer = CrystalShipPlacer()
+
+    init {
+        clear()
+    }
 
     fun placeShips() {
         for (ship in (gameboard as SimpleGameboard).ships) {
@@ -25,7 +32,7 @@ class Shipboard(
             val vertical = shipInfo.vertical
 
             val originCell = getAreaOfCell(x, y)
-            var limitCell = getAreaOfCell(x + if (vertical) 0 else shipSize - 1, y + if (vertical) shipSize - 1 else 0)
+            val limitCell = getAreaOfCell(x + if (vertical) 0 else shipSize - 1, y + if (vertical) shipSize - 1 else 0)
 
             val shipOrigin = Location(originLocation.world,
                 originCell.minOf { it.x }.toDouble(),
@@ -64,9 +71,18 @@ class Shipboard(
         }
     }
 
+    fun receiveShoot(x: Int, y: Int, hit: Boolean) {
+        val centerOffset: Double = floor(tileSize / 2.0)
+        val lightingLocation = getAreaOfCell(x, y).loc1.add(centerOffset, centerOffset, centerOffset)
 
+        lightingLocation.world?.let {
+            it.spawnParticle(if (hit) Particle.FLAME else Particle.ASH, lightingLocation, 50)
+            it.spawnEntity(lightingLocation, EntityType.LIGHTNING)
+        }
 
-    fun update() {
+        for (block in getAreaOfCell(x, y)) {
+            block.type = if (hit) Material.CRYING_OBSIDIAN else Material.COBWEB
+        }
 
     }
 

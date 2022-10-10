@@ -4,6 +4,7 @@ import com.fadedbytes.MCBattleship.game.board.ship.Ship
 import com.fadedbytes.MCBattleship.util.BlockArea
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.block.BlockFace
 
 class CrystalShipPlacer: ShipPlacer {
 
@@ -44,6 +45,20 @@ class CrystalShipPlacer: ShipPlacer {
 
             block.type = if (seed >= distanceFactor) mainMaterial else if (seed >= distanceFactor / 4) secondaryMaterial else Material.AIR
 
+        }
+
+        for (block in area) {
+            var airFound = false
+            for (face in listOf(BlockFace.UP, BlockFace.DOWN, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST)) {
+                if (block.getRelative(face).type == Material.AIR) {
+                    airFound = true
+                    break
+                }
+            }
+
+            if (!airFound) {
+                block.type = Material.SEA_LANTERN
+            }
         }
 
     }

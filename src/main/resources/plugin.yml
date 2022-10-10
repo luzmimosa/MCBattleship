@@ -9,3 +9,9 @@ commands:
   test:
     description: Test command for debug purposes
     usage: /test
+  start:
+    description: Start a new game in the current world, if configured
+    usage: /start
+  setup:
+    description: Setup a new game in the current world
+    usage: /setup <radarX> <radarY> <radarZ> <canonX> <canonY> <canonZ> <shipboardX> <shipboardY> <shipboardZ>

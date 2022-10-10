@@ -9,8 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Updated game start logic. Early dev build is working">
+    <list default="true" id="6852d661-8e96-496a-a9f9-d439746354bd" name="Changes" comment="Optimized lambdas">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/SetupCommand.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/WorldGameManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MCBattleship_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MCBattleship_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/BattleshipPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/FastTestCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/command/StartGameCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/MinecraftGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/PlayerIsolatorListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/PlayerIsolatorListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/api/listeners/RadarMarkerListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/CrystalShipPlacer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/fadedbytes/MCBattleship/mcgame/features/shipboard/Shipboard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +35,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Kotlin Interface" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -39,25 +54,29 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pau/.m2/repository/org/spigotmc/spigot-api/1.19.2-R0.1-SNAPSHOT/spigot-api-1.19.2-R0.1-SNAPSHOT.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/Pau/.m2/repository/org/spigotmc/spigot-api/1.19.2-R0.1-SNAPSHOT/spigot-api-1.19.2-R0.1-SNAPSHOT.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -270,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664803909471</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Optimized lambdas">
+      <created>1665393134033</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665393134033</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +329,7 @@
     <MESSAGE value="Canon implemented. It fires a magic beam when shooting the enemy" />
     <MESSAGE value="Modified test command in order to test the froglight canon" />
     <MESSAGE value="Updated game start logic. Early dev build is working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated game start logic. Early dev build is working" />
+    <MESSAGE value="Optimized lambdas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimized lambdas" />
   </component>
 </project>

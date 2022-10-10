@@ -1,6 +1,8 @@
 package com.fadedbytes.MCBattleship.mcgame
 
+import com.fadedbytes.MCBattleship.BattleshipPlugin
 import com.fadedbytes.MCBattleship.game.BattleshipGame
+import com.fadedbytes.MCBattleship.game.GameState
 import com.fadedbytes.MCBattleship.game.board.ship.Ship
 import com.fadedbytes.MCBattleship.game.board.ship.ShipInfo
 import com.fadedbytes.MCBattleship.mcgame.api.listeners.RadarMarkerListener
@@ -44,6 +46,7 @@ class MinecraftGame(
 
     companion object {
         val playersPlaying = mutableMapOf<Player, MinecraftGame>()
+        val worldInfoManager = WorldGameManager()
 
         fun getGame(player: Player): MinecraftGame? {
             return playersPlaying[player]
@@ -104,10 +107,10 @@ class MinecraftGame(
     }
 
     private fun endShipPlacement() {
-        Bukkit.broadcastMessage("All ships placed")
         radar.palette = RadarPalettes.ENEMY.palette
         radar.showShips = false
-        onPlayerTurn()
+
+        nextTurn()
     }
 
     private fun onPlayerTurn() {
@@ -139,7 +142,7 @@ class MinecraftGame(
                         onPlayerMiss()
                     }
 
-                    onPlayerTurn()
+                    nextTurn()
                 }
             }
         )
@@ -163,6 +166,51 @@ class MinecraftGame(
 
     fun updateAll() {
         setupRadar()
+    }
+
+    fun nextTurn() {
+        logicGame.nextGameState()
+
+        when (logicGame.gameState) {
+            GameState.BLUE_TURN -> onPlayerTurn()
+            GameState.RED_TURN -> onEnemyTurn()
+
+            GameState.BLUE_WON -> onPlayerWon()
+            GameState.RED_WON -> onComputerWon()
+            else -> {}
+        }
+    }
+
+    private fun onEnemyTurn() {
+
+        var shooted = false
+
+        do {
+            val x = (0 until logicGame.bluePlayer.gameboard.size).random()
+            val y = (0 until logicGame.bluePlayer.gameboard.size).random()
+
+            if (logicGame.bluePlayer.gameboard.canShoot(x, y)) {
+                val hit =  logicGame.bluePlayer.gameboard.registerFire(x, y)
+                shooted = true
+
+                Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
+                    shipboard.receiveShoot(x, y, hit)
+
+                    Bukkit.getScheduler().runTaskLater(BattleshipPlugin.instance, Runnable {
+                        nextTurn()
+                    }, 20L)
+                }, 40L)
+            }
+
+        } while (!shooted)
+    }
+
+    private fun onPlayerWon() {
+
+    }
+
+    private fun onComputerWon() {
+
     }
 
 }

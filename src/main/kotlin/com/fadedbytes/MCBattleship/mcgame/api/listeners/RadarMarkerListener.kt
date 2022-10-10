@@ -129,7 +129,6 @@ class RadarMarkerListener(
 
             // Right click changes the axis
             Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK -> {
-                event.player.sendMessage("Right click: ${event.hand?.name}")
                 if (event.hand == EquipmentSlot.OFF_HAND && event.action == Action.RIGHT_CLICK_BLOCK) return
                 currentAxis = if (currentAxis == Axis.X) Axis.Z else Axis.X
                 updateHologram()

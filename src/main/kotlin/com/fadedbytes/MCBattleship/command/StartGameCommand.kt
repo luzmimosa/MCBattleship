@@ -1,5 +1,6 @@
 package com.fadedbytes.MCBattleship.command
 
+import com.fadedbytes.MCBattleship.mcgame.MinecraftGame
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -15,9 +16,21 @@ class StartGameCommand: CommandExecutor {
         }
 
         try {
-            TODO("Start game")
 
-            sender.sendMessage("${ChatColor.GOLD}Starting game for you :)")
+            MinecraftGame.worldInfoManager.getInfo(sender.location.world!!)?.let {
+
+                MinecraftGame(
+                    sender,
+                    10,
+                    it.radarLocation.block,
+                    it.canonLocation.block,
+                    it.shipboardLocation.block
+                )
+
+                sender.sendMessage("${ChatColor.GREEN}Game started")
+            } ?: run {
+                sender.sendMessage("${ChatColor.RED}No game setup for this world")
+            }
         } catch (e: IllegalStateException) {
             sender.sendMessage("Ya estás jugando :(")
         }
