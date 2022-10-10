@@ -10,4 +10,6 @@ interface Canon {
 
     fun postShoot(afterShoot: () -> Unit)
 
+    fun forceStop(afterStop: () -> Unit = {})
+
 }

@@ -1,6 +1,7 @@
 package com.fadedbytes.MCBattleship
 
 import com.fadedbytes.MCBattleship.command.FastTestCommand
+import com.fadedbytes.MCBattleship.mcgame.MinecraftGame
 import com.fadedbytes.MCBattleship.command.SetupCommand
 import com.fadedbytes.MCBattleship.command.StartGameCommand
 import com.fadedbytes.MCBattleship.mcgame.api.listeners.PlayerIsolatorListener
@@ -11,6 +12,7 @@ class BattleshipPlugin: JavaPlugin() {
 
     companion object {
         lateinit var instance: BattleshipPlugin
+        val activeGames: MutableSet<MinecraftGame> = mutableSetOf()
     }
 
     override fun onEnable() {
@@ -25,6 +27,9 @@ class BattleshipPlugin: JavaPlugin() {
     }
 
     override fun onDisable() {
+        for (game in activeGames) {
+            game.endGame()
+        }
         logger.info("BattleshipPlugin disabled")
     }
 }

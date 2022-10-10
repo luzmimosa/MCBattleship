@@ -20,9 +20,10 @@ import org.bukkit.entity.Player
 class MinecraftGame(
     val player: Player,
     val size: Int,
-    radarLocation: Block,
+    val radarLocation: Block,
     canonLocation: Block,
     shipboardLocation: Block,
+    val onGameEnd: (MinecraftGame) -> Unit
 ) {
 
     val logicGame = BattleshipGame(size)
@@ -166,6 +167,14 @@ class MinecraftGame(
 
     fun updateAll() {
         setupRadar()
+    }
+
+    fun endGame() {
+        radar.gameboardArea.fill(Material.AIR)
+        shipboard.clear()
+        canon.forceStop()
+
+        onGameEnd(this)
     }
 
     fun nextTurn() {
